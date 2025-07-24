@@ -485,7 +485,7 @@ export const Navbar = () => {
         openModal={openModal}
         text="You will be logged out. Click Confirm if you wish to proceed."
         title="Comeback soon 😄"
-        type="warning"
+        type="danger"
         handleFunction={handleLogout}
       />
     </React.Fragment>

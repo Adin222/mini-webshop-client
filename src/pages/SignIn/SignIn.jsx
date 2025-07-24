@@ -44,9 +44,15 @@ export const SignIn = () => {
           open: true,
           message: "You have logged in, welcome!",
         });
+        setLoginBody({
+          username: "",
+          password: "",
+        });
         setLoading(false);
         refetch();
-        navigate("/");
+        setTimeout(() => {
+          navigate("/");
+        }, [1000]);
       } else if (response.status === 401) {
         setToastMessage({
           status: "danger",
@@ -156,7 +162,10 @@ export const SignIn = () => {
           </p>
         </div>
       </div>
-      <ToastMessage toastMessage={toastMessage} />
+      <ToastMessage
+        toastMessage={toastMessage}
+        setToastMessage={setToastMessage}
+      />
     </React.Fragment>
   );
 };
