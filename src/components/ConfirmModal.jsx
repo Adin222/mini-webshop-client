@@ -4,25 +4,15 @@ import {
   DialogPanel,
   DialogTitle,
 } from "@headlessui/react";
-import { ExclamationTriangleIcon } from "@heroicons/react/24/outline";
-
-const COLORS = {
-  warning: { bg: "bg-yellow-100", text: "text-yellow-600" },
-  danger: { bg: "bg-red-100", text: "text-red-600" },
-  info: { bg: "bg-blue-100", text: "text-blue-600" },
-  success: { bg: "bg-green-100", text: "text-green-600" },
-};
 
 export const ConfirmModal = ({
   openModal,
   setOpenModal,
   text,
   title,
-  type = "info",
+  loading,
   handleFunction,
 }) => {
-  const colors = COLORS[type] || COLORS.info;
-
   return (
     <Dialog open={openModal} onClose={setOpenModal} className="relative z-50">
       <DialogBackdrop
@@ -38,14 +28,6 @@ export const ConfirmModal = ({
           >
             <div className="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
               <div className="sm:flex sm:items-start">
-                <div
-                  className={`mx-auto flex size-12 shrink-0 items-center justify-center rounded-full ${colors.bg} sm:mx-0 sm:size-10`}
-                >
-                  <ExclamationTriangleIcon
-                    aria-hidden="true"
-                    className={`size-6 ${colors.text}`}
-                  />
-                </div>
                 <div className="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
                   <DialogTitle
                     as="h3"
@@ -61,17 +43,19 @@ export const ConfirmModal = ({
             </div>
             <div className="bg-gray-50 px-4 py-3 sm:flex sm:flex-row-reverse sm:px-6">
               <button
+                disabled={loading}
                 type="button"
                 onClick={handleFunction}
-                className="inline-flex w-full justify-center rounded-md bg-red-600 px-3 py-2 text-sm font-semibold text-white shadow-xs hover:bg-red-500 sm:ml-3 sm:w-auto"
+                className="inline-flex w-full justify-center rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-xs hover:bg-indigo-500 hover:cursor-pointer sm:ml-3 sm:w-auto"
               >
                 Confirm
               </button>
               <button
+                disabled={loading}
                 type="button"
                 data-autofocus
                 onClick={() => setOpenModal(false)}
-                className="mt-3 inline-flex w-full justify-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-xs ring-1 ring-gray-300 ring-inset hover:bg-gray-50 sm:mt-0 sm:w-auto"
+                className="mt-3 inline-flex w-full justify-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-xs ring-1 ring-gray-300 ring-inset hover:bg-gray-50 hover:cursor-pointer sm:mt-0 sm:w-auto"
               >
                 Cancel
               </button>

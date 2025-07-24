@@ -6,6 +6,7 @@ import { SignIn } from "./pages/SignIn/SignIn";
 import { useQuery } from "@tanstack/react-query";
 import { Loading } from "./components/Loading";
 import { StateContext } from "./context/StateContext";
+import { Footer } from "./components/Footer";
 import "./App.css";
 
 //Service
@@ -40,6 +41,7 @@ function App() {
           <Route path="/" element={<HomePage />} />
           <Route path="sign-in" element={<SignIn />} />
         </Routes>
+        {location.pathname !== "/sign-in" && <Footer />}
       </StateContext>
     </React.Fragment>
   );
