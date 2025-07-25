@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import {
   ArrowLeftEndOnRectangleIcon,
   XMarkIcon,
@@ -9,6 +9,13 @@ import {
 } from "@heroicons/react/24/outline";
 
 export const AdminMenu = ({ setOpenModal, isOpen, setIsOpen }) => {
+  const navigate = useNavigate();
+
+  const handleNavigate = (path) => {
+    setIsOpen(false);
+    navigate(path);
+  };
+
   return (
     <React.Fragment>
       {isOpen && (
@@ -36,46 +43,48 @@ export const AdminMenu = ({ setOpenModal, isOpen, setIsOpen }) => {
           <ul className="space-y-2 font-medium">
             <p className="text-gray-500 px-2">Webshop management</p>
             <li>
-              <Link
-                to="#"
-                className="flex ml-2 items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
+              <button
+                onClick={() => handleNavigate("products")}
+                className="flex ml-2 items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group w-full text-left"
               >
                 <BuildingStorefrontIcon className="w-6 h-6" />
                 <span className="ms-3">products</span>
-              </Link>
+              </button>
             </li>
             <li>
-              <Link
-                to="#"
-                className="flex ml-2 items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
+              <button
+                onClick={() => handleNavigate("orders")}
+                className="flex ml-2 items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group w-full text-left"
               >
                 <QueueListIcon className="w-6 h-6" />
                 <span className="ms-3">orders</span>
-              </Link>
+              </button>
             </li>
             <p className="text-gray-500 px-2">Settings</p>
             <li>
-              <Link
-                to="#"
-                className="flex ml-2 items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
+              <button
+                onClick={() => handleNavigate("my-profile")}
+                className="flex ml-2 items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group w-full text-left"
               >
                 <UserIcon className="w-6 h-6" />
                 <span className="ms-3">my profile</span>
-              </Link>
+              </button>
             </li>
           </ul>
         </div>
+
         <hr className="border-gray-300" />
+
         <div className="mt-auto">
           <ul className="space-y-2 font-medium mt-2">
             <li>
-              <Link
+              <button
                 onClick={() => setOpenModal(true)}
-                className="flex ml-2 items-center p-2 text-red-900 rounded-lg dark:text-white hover:bg-red-100 dark:hover:bg-gray-700 group"
+                className="flex ml-2 items-center p-2 text-red-900 rounded-lg dark:text-white hover:bg-red-100 dark:hover:bg-gray-700 group w-full text-left"
               >
                 <ArrowLeftEndOnRectangleIcon className="w-6 h-6" />
                 <span className="flex-1 ms-3 whitespace-nowrap">log out</span>
-              </Link>
+              </button>
             </li>
           </ul>
         </div>
