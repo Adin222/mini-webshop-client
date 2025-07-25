@@ -1,5 +1,5 @@
-import { MarginWrapper } from "../../components/MarginWrapper";
-import { Filters } from "../../components/Filters";
+import { MarginWrapper } from "../../components/core/MarginWrapper";
+import { Filters } from "../../components/core/Filters";
 
 export const HomePage = () => {
   return (

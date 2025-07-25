@@ -234,11 +234,10 @@ export const Footer = () => {
           <div className="gap-4 space-y-5 xl:flex xl:items-center xl:justify-between xl:space-y-0">
             <a href="#" title="" className="flex items-center gap-2">
               <img
-                className="block h-10 w-auto dark:hidden"
-                src="logo.png"
+                className="block h-6 w-auto dark:hidden"
+                src="logo2.png"
                 alt=""
               />
-              <h5 className="text-lg font-semibold">Bazaar</h5>
             </a>
 
             <ul className="flex flex-wrap items-center gap-4 text-sm text-gray-900 dark:text-white xl:justify-center">

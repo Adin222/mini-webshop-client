@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { handleCloseToast } from "../utils/utils";
+import { handleCloseToast } from "../../utils/utils";
 
 const COLORS = {
   danger: {

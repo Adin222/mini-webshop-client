@@ -71,30 +71,7 @@ export const Navigation = (is_auth) => {
           },
         ],
       },
-      is_auth && {
-        id: "admin_menu",
-        name: "admin menu",
-        featured: [],
-        sections: [
-          {
-            id: "system_management",
-            name: "system management",
-            items: [
-              { name: "Orders", href: "/orders-management" },
-              { name: "Products", href: "/product-management" },
-            ],
-          },
-          {
-            id: "settings",
-            name: "settings",
-            items: [{ name: "My profile", href: "/my-profile" }],
-          },
-        ],
-      },
-    ].filter(Boolean), // It removes falsy values from an array
-    pages: [
-      { name: "company", href: "#" },
-      { name: "stores", href: "#" },
     ],
+    pages: [],
   };
 };

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { ToastMessage } from "../../components/ToastMessage";
-import { ButtonSpinner } from "../../components/ButtonSpinner";
+import { ToastMessage } from "../../components/core/ToastMessage";
+import { ButtonSpinner } from "../../components/core/ButtonSpinner";
 import useUserState from "../../hooks/useUserState";
 import { EyeIcon, EyeSlashIcon } from "@heroicons/react/24/outline";
 
@@ -53,7 +53,7 @@ export const SignIn = () => {
             username: "",
             password: "",
           });
-          navigate("/");
+          navigate("/dashboard");
         }, [1000]);
       } else if (response.status === 401) {
         setToastMessage({

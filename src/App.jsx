@@ -1,12 +1,15 @@
 import React from "react";
-import { Routes, Route, useLocation } from "react-router-dom";
-import { HomePage } from "./pages/HomePage/HomePage";
-import { Navbar } from "./components/Navbar";
-import { SignIn } from "./pages/SignIn/SignIn";
+import { Routes, Route } from "react-router-dom";
+import { HomePage } from "./pages/guest/HomePage";
+import { SignIn } from "./pages/guest/SignIn";
 import { useQuery } from "@tanstack/react-query";
-import { Loading } from "./components/Loading";
+import { Loading } from "./components/core/Loading";
 import { StateContext } from "./context/StateContext";
-import { Footer } from "./components/Footer";
+import { GuestLayout } from "./layouts/GuestLayout";
+import { AdminLayout } from "./layouts/AdminLayout";
+import { AdminHomepage } from "./pages/admin/AdminHomepage";
+import { AdminRoute } from "./components/admin/AdminRoute";
+import { GuestRoute } from "./components/guest/GuestRoute";
 import "./App.css";
 
 //Service
@@ -22,8 +25,6 @@ function App() {
     retry: false,
   });
 
-  const location = useLocation();
-
   if (isLoading) return <Loading />;
 
   const { is_auth } = data?.data?.user;
@@ -36,12 +37,28 @@ function App() {
   return (
     <React.Fragment>
       <StateContext value={value}>
-        {location.pathname !== "/sign-in" && <Navbar />}
         <Routes>
-          <Route path="/" element={<HomePage />} />
+          <Route
+            element={
+              <GuestRoute>
+                <GuestLayout />
+              </GuestRoute>
+            }
+          >
+            <Route path="/" element={<HomePage />} />
+          </Route>
           <Route path="sign-in" element={<SignIn />} />
+          <Route
+            path="/dashboard"
+            element={
+              <AdminRoute>
+                <AdminLayout />
+              </AdminRoute>
+            }
+          >
+            <Route index element={<AdminHomepage />} />
+          </Route>
         </Routes>
-        {location.pathname !== "/sign-in" && <Footer />}
       </StateContext>
     </React.Fragment>
   );
