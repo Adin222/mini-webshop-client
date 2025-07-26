@@ -6,6 +6,7 @@ import {
   BuildingStorefrontIcon,
   QueueListIcon,
   UserIcon,
+  HomeIcon,
 } from "@heroicons/react/24/outline";
 
 export const AdminMenu = ({ setOpenModal, isOpen, setIsOpen }) => {
@@ -41,6 +42,16 @@ export const AdminMenu = ({ setOpenModal, isOpen, setIsOpen }) => {
 
         <div className="flex-grow mt-10">
           <ul className="space-y-2 font-medium">
+            <p className="text-gray-500 px-2">Home</p>
+            <li>
+              <button
+                onClick={() => handleNavigate("")}
+                className="flex ml-2 items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group w-full text-left"
+              >
+                <HomeIcon className="w-6 h-6" />
+                <span className="ms-3">Home page</span>
+              </button>
+            </li>
             <p className="text-gray-500 px-2">Webshop management</p>
             <li>
               <button

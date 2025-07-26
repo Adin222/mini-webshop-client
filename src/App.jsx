@@ -38,10 +38,11 @@ function App() {
 
   if (isLoading) return <Loading />;
 
-  const { is_auth } = data?.data?.user;
+  const { is_auth, id } = data?.data?.user;
 
   const value = {
     is_auth,
+    id,
     refetch,
   };
 

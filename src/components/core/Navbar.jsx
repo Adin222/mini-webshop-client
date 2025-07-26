@@ -91,7 +91,11 @@ export const Navbar = ({ role }) => {
                   </button>
                 )}
                 {role === "guest" && <Menu navigation={navigation} />}
-
+                {role === "admin" && (
+                  <h4 className="ml-6 text-2xl font-semibold text-gray-800">
+                    Admin dashboard
+                  </h4>
+                )}
                 <div className="ml-auto flex items-center">
                   {role === "guest" && (
                     <div className="hidden lg:flex lg:flex-1 lg:items-center lg:justify-end lg:space-x-6">
