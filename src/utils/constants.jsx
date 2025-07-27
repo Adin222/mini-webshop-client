@@ -103,3 +103,11 @@ export const categoryOptions = {
     "Other",
   ],
 };
+
+export const productFields = [
+  "product_name",
+  "price",
+  "description",
+  "sub_category",
+  "category",
+];

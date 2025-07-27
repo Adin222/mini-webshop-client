@@ -1,6 +1,6 @@
 import { categoryOptions } from "../../utils/constants";
 
-export const CategorySelector = ({ formData, handleForm }) => {
+export const CategorySelector = ({ formData, handleForm, errors }) => {
   return (
     <div className="flex justify-between gap-4">
       <div className="w-1/2">
@@ -9,7 +9,9 @@ export const CategorySelector = ({ formData, handleForm }) => {
           value={formData.category}
           name="category"
           onChange={handleForm}
-          className="mt-1 block w-full border rounded p-2"
+          className={`mt-1 block w-full border rounded p-2 ${
+            errors.category ? "border-red-500" : "border-black-300"
+          }`}
         >
           <option value="">Select category</option>
           {Object.keys(categoryOptions).map((category) => (
@@ -18,6 +20,9 @@ export const CategorySelector = ({ formData, handleForm }) => {
             </option>
           ))}
         </select>
+        {errors.category && (
+          <p className="text-xs text-red-500">category cannot be empty</p>
+        )}
       </div>
 
       <div className="w-1/2">
@@ -31,7 +36,9 @@ export const CategorySelector = ({ formData, handleForm }) => {
     ${
       !formData.category
         ? "bg-gray-100 text-gray-400 cursor-not-allowed"
-        : "bg-white cursor-pointer"
+        : `bg-white cursor-pointer ${
+            errors.sub_category ? "border-red-500" : "border-black-300"
+          }`
     }`}
         >
           <option value="">Select subcategory</option>
@@ -42,6 +49,9 @@ export const CategorySelector = ({ formData, handleForm }) => {
               </option>
             ))}
         </select>
+        {errors.sub_category && (
+          <p className="text-xs text-red-500">sub category cannot be empty</p>
+        )}
       </div>
     </div>
   );

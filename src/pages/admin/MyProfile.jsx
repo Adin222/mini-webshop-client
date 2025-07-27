@@ -1,6 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { MarginWrapper } from "../../components/core/MarginWrapper";
-import { LockClosedIcon } from "@heroicons/react/24/outline";
+import {
+  LockClosedIcon,
+  EyeIcon,
+  EyeSlashIcon,
+} from "@heroicons/react/24/outline";
 import { useQuery } from "@tanstack/react-query";
 import useUserState from "../../hooks/useUserState";
 import { Skeleton } from "../../components/core/Skeleton";
@@ -17,6 +21,8 @@ export const MyProfile = () => {
   const [editable, setEditable] = useState(false);
   const [confirmPassword, setConfirmPassword] = useState("");
   const [loading, setLoading] = useState(false);
+  const [togglePass, setTogglePass] = useState(false);
+  const [toggleConfirmPass, setToggleConfirmPass] = useState(false);
   const [toastMessage, setToastMessage] = useState({
     status: "",
     open: false,
@@ -254,17 +260,31 @@ export const MyProfile = () => {
               {isLoading ? (
                 <Skeleton skeletonClass="h-10 bg-gray-200 p-2 border border-gray-300 rounded" />
               ) : (
-                <input
-                  type="password"
-                  name="password"
-                  onChange={handleChange}
-                  value={body.password}
-                  disabled={!editable}
-                  placeholder="**********"
-                  className={`p-2 border border-gray-300 rounded ${
-                    !editable ? "bg-gray-100 cursor-not-allowed" : ""
-                  }`}
-                />
+                <div className="relative">
+                  <input
+                    type={togglePass ? "text" : "password"}
+                    name="password"
+                    onChange={handleChange}
+                    value={body.password}
+                    disabled={!editable}
+                    placeholder="**********"
+                    className={`w-full p-2 pr-10 border border-gray-300 rounded ${
+                      !editable ? "bg-gray-100 cursor-not-allowed" : ""
+                    }`}
+                  />
+                  <button
+                    type="button"
+                    onClick={() => setTogglePass(!togglePass)}
+                    className="absolute right-2 top-1/2 -translate-y-1/2 text-gray-500 hover:text-gray-700"
+                    tabIndex={-1}
+                  >
+                    {togglePass ? (
+                      <EyeSlashIcon className="w-5 h-5" />
+                    ) : (
+                      <EyeIcon className="w-5 h-5" />
+                    )}
+                  </button>
+                </div>
               )}
             </div>
 
@@ -278,17 +298,31 @@ export const MyProfile = () => {
               {isLoading ? (
                 <Skeleton skeletonClass="h-10 bg-gray-200 p-2 border border-gray-300 rounded" />
               ) : (
-                <input
-                  type="password"
-                  name="confirmPassword"
-                  value={confirmPassword}
-                  onChange={(e) => setConfirmPassword(e.target.value)}
-                  disabled={!editable}
-                  placeholder="**********"
-                  className={`p-2 border border-gray-300 rounded ${
-                    !editable ? "bg-gray-100 cursor-not-allowed" : ""
-                  }`}
-                />
+                <div className="relative">
+                  <input
+                    type={toggleConfirmPass ? "text" : "password"}
+                    name="confirm_password"
+                    onChange={(e) => setConfirmPassword(e.target.value)}
+                    value={confirmPassword}
+                    disabled={!editable}
+                    placeholder="**********"
+                    className={`w-full p-2 pr-10 border border-gray-300 rounded ${
+                      !editable ? "bg-gray-100 cursor-not-allowed" : ""
+                    }`}
+                  />
+                  <button
+                    type="button"
+                    onClick={() => setToggleConfirmPass(!toggleConfirmPass)}
+                    className="absolute right-2 top-1/2 -translate-y-1/2 text-gray-500 hover:text-gray-700"
+                    tabIndex={-1}
+                  >
+                    {toggleConfirmPass ? (
+                      <EyeSlashIcon className="w-5 h-5" />
+                    ) : (
+                      <EyeIcon className="w-5 h-5" />
+                    )}
+                  </button>
+                </div>
               )}
             </div>
 

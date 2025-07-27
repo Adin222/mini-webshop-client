@@ -15,3 +15,16 @@ export const validatePassword = (password) => {
   const passwordRegex = /^(?=.*[A-Z])(?=.*[!@#$%^&*(),.?":{}|<>]).{8,}$/;
   return passwordRegex.test(password);
 };
+
+export const validate = (formBody, requiredFields) => {
+  const errors = {};
+
+  requiredFields.forEach((field) => {
+    const value = formBody?.[field];
+    if (value === undefined || value === null || value === "" || value <= 0) {
+      errors[field] = true;
+    }
+  });
+
+  return errors;
+};
