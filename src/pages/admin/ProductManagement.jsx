@@ -39,6 +39,7 @@ export const ProductManagement = () => {
       description: "",
     });
     setErrors({});
+    setImage(null);
   };
 
   const quantityArr = [1, 2, 3, 4, 5];
