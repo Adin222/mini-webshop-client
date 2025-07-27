@@ -17,6 +17,7 @@ import { SignIn } from "./pages/guest/SignIn";
 import { ErrorNotFound } from "./pages/core/ErrorNotFound";
 import { AdminHomepage } from "./pages/admin/AdminHomepage";
 import { MyProfile } from "./pages/admin/MyProfile";
+import { ProductManagement } from "./pages/admin/ProductManagement";
 
 //Hooks
 import { StateContext } from "./context/StateContext";
@@ -70,6 +71,7 @@ function App() {
           >
             <Route index element={<AdminHomepage />} />
             <Route path="my-profile" element={<MyProfile />} />
+            <Route path="product-management" element={<ProductManagement />} />
           </Route>
           <Route path="*" element={<ErrorNotFound />} />
         </Routes>

@@ -55,7 +55,7 @@ export const AdminMenu = ({ setOpenModal, isOpen, setIsOpen }) => {
             <p className="text-gray-500 px-2">Webshop management</p>
             <li>
               <button
-                onClick={() => handleNavigate("products")}
+                onClick={() => handleNavigate("product-management")}
                 className="flex ml-2 items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group w-full text-left"
               >
                 <BuildingStorefrontIcon className="w-6 h-6" />
