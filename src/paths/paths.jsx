@@ -7,3 +7,8 @@ export const logoutPath = "/api/auth/logout";
 //User routes
 export const getUserPath = "/api/user/";
 export const updateUserPath = "/api/user/";
+
+//Product routes
+export const createProductPath = "/api/create/product";
+export const getProductsPath = "/api/products";
+export const getProductById = "/api/product/";

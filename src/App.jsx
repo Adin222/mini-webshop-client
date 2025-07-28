@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Routes, Route } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
+import Cookies from "js-cookie";
 
 //Components
 import { Loading } from "./components/core/Loading";
@@ -12,12 +13,12 @@ import { GuestLayout } from "./layouts/GuestLayout";
 import { AdminLayout } from "./layouts/AdminLayout";
 
 //Pages
-import { HomePage } from "./pages/guest/HomePage";
+import { HomePage } from "./pages/core/HomePage";
 import { SignIn } from "./pages/guest/SignIn";
 import { ErrorNotFound } from "./pages/core/ErrorNotFound";
-import { AdminHomepage } from "./pages/admin/AdminHomepage";
 import { MyProfile } from "./pages/admin/MyProfile";
 import { ProductManagement } from "./pages/admin/ProductManagement";
+import { ProductDetails } from "./pages/core/ProductDetails";
 
 //Hooks
 import { StateContext } from "./context/StateContext";
@@ -36,6 +37,14 @@ function App() {
     queryFn: () => Get(authStatusPath),
     retry: false,
   });
+
+  useEffect(() => {
+    const existingSessionId = Cookies.get("session_id");
+    if (!existingSessionId) {
+      const session_id = Math.random().toString(36).substring(2);
+      Cookies.set("session_id", session_id, { expires: 30, path: "/" });
+    }
+  }, []);
 
   if (isLoading) return <Loading />;
 
@@ -59,6 +68,7 @@ function App() {
             }
           >
             <Route path="/" element={<HomePage />} />
+            <Route path="/product/:product_id" element={<ProductDetails />} />
           </Route>
           <Route path="sign-in" element={<SignIn />} />
           <Route
@@ -69,9 +79,10 @@ function App() {
               </AdminRoute>
             }
           >
-            <Route index element={<AdminHomepage />} />
+            <Route index element={<HomePage />} />
             <Route path="my-profile" element={<MyProfile />} />
             <Route path="product-management" element={<ProductManagement />} />
+            <Route path="product/:product_id" element={<ProductDetails />} />
           </Route>
           <Route path="*" element={<ErrorNotFound />} />
         </Routes>

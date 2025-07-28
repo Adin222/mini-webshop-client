@@ -77,31 +77,10 @@ export const Navigation = (is_auth) => {
 };
 
 export const categoryOptions = {
-  Technology: [
-    "Smartphones",
-    "Laptops",
-    "Tablets",
-    "TV",
-    "Gaming Devices",
-    "Other",
-  ],
-  Clothing: ["T-Shirts", "Jeans", "Shoes", "Jackets", "Hoodies", "Other"],
-  Accessories: [
-    "Bags & Backpacks",
-    "Watches",
-    "Jewelry",
-    "Belts & Wallets",
-    "Sunglasses",
-    "Other",
-  ],
-  Tools: [
-    "Hand Tools",
-    "Power Tools",
-    "Gardening Tools",
-    "Automotive Tools",
-    "Measuring Tools",
-    "Other",
-  ],
+  Technology: ["Smartphones", "Laptops", "Other"],
+  Clothing: ["T-Shirts", "Jeans", "Other"],
+  Accessories: ["Bags & Backpacks", "Watches", "Other"],
+  Tools: ["Hand Tools", "Power Tools", "Other"],
 };
 
 export const productFields = [

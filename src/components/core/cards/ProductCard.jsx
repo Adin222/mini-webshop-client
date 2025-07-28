@@ -1,25 +1,27 @@
-export const ProductCard = () => {
+import { Link } from "react-router-dom";
+
+export const ProductCard = ({ id, name, price, imageUrl, quantity }) => {
   return (
-    <div class="w-full max-w-[250px] bg-white border border-gray-200 rounded-lg shadow-sm dark:bg-gray-800 dark:border-gray-700">
-      <a href="#">
+    <div className="w-full max-w-[250px] bg-white border border-gray-200 rounded-lg shadow-sm dark:bg-gray-800 dark:border-gray-700">
+      <Link to={`product/${id}`}>
         <img
-          class="p-5 rounded-t-lg max-h-90 object-contain"
-          src="https://veirdo.in/cdn/shop/files/vb200.jpg?v=1728462042&width=533"
+          className="p-2 rounded-t-lg h-[280px] w-full object-contain"
+          src={imageUrl}
           alt="product image"
         />
-      </a>
-      <div class="px-5 pb-5">
+      </Link>
+      <div className="px-5 pb-5">
         <a href="#">
-          <h6 class="text-md font-semibold tracking-tight text-gray-900 dark:text-white">
-            Apple Watch Series 7 GPS
+          <h6 className="text-md font-semibold tracking-tight text-gray-900 dark:text-white">
+            {name}
           </h6>
         </a>
-        <div class="flex items-center mt-2.5 mb-5">
-          <h6 className="text-gray-500 font-semibold">Quantity: 2</h6>
+        <div className="flex items-center mt-2.5 mb-5">
+          <h6 className="text-gray-500 font-semibold">Quantity: {quantity}</h6>
         </div>
-        <div class="flex items-center justify-between">
-          <span class="text-md font-bold text-gray-600 dark:text-white">
-            BAM: 1300
+        <div className="flex items-center justify-between">
+          <span className="text-md font-bold text-gray-600 dark:text-white">
+            BAM: {price}
           </span>
           <a
             href="#"

@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router";
 import { MarginWrapper } from "../../components/core/MarginWrapper";
 import { CategorySelector } from "../../components/admin/CategorySelector";
 import { validate } from "../../utils/utils";
@@ -6,9 +7,25 @@ import { productFields } from "../../utils/constants";
 import { ImageUploader } from "../../components/admin/ImageUploader";
 import { ToastMessage } from "../../components/core/ToastMessage";
 
+//Firebase
+import { storage } from "../../firebase/firebaseSDK";
+import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
+
+//Services
+import { Post } from "../../services/services";
+
+//Paths
+import { createProductPath } from "../../paths/paths";
+
 export const ProductManagement = () => {
   const [errors, setErrors] = useState({});
   const [image, setImage] = useState();
+  const [loading, setLoading] = useState(false);
+  const [toastMessage, setToastMessage] = useState({
+    status: "",
+    open: false,
+    message: "",
+  });
   const [formData, setFormData] = useState({
     category: "",
     sub_category: "",
@@ -17,6 +34,8 @@ export const ProductManagement = () => {
     quantity: 1,
     description: "",
   });
+
+  const navigate = useNavigate();
 
   const handleForm = (e) => {
     setFormData((prev) => ({
@@ -44,14 +63,61 @@ export const ProductManagement = () => {
 
   const quantityArr = [1, 2, 3, 4, 5];
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     const validationErrors = validate(formData, productFields);
     if (!image) validationErrors.image = true;
     setErrors(validationErrors);
+    setLoading(true);
+    try {
+      if (Object.keys(validationErrors).length === 0 && image) {
+        let imageUrl = "";
+        const imageRef = ref(storage, `product_picture/${image.file.name}`);
+        try {
+          await uploadBytes(imageRef, image.file);
+          console.log("Upload succeeded!");
+        } catch (error) {
+          console.error("Upload failed:", error);
+        }
+        imageUrl = await getDownloadURL(imageRef);
 
-    if (Object.keys(validationErrors).length === 0) {
-      console.log("Form is valid, submitting...");
+        const payload = {
+          product_name: formData.product_name,
+          description: formData.description,
+          price: Number(formData.price),
+          quantity: Number(formData.quantity),
+          category: formData.category.toLowerCase(),
+          sub_category: formData.sub_category.toLowerCase(),
+          image_url: imageUrl,
+        };
+
+        const response = await Post(createProductPath, payload);
+        if (response.status === 200) {
+          setToastMessage({
+            status: "success",
+            open: true,
+            message: response.data.product,
+          });
+          setTimeout(() => {
+            navigate("/dashboard");
+            setLoading(false);
+            handleClearForm();
+          }, [1500]);
+        } else {
+          setToastMessage({
+            status: "danger",
+            open: true,
+            message: response.data.detail,
+          });
+          setLoading(false);
+        }
+      }
+    } catch (error) {
+      setToastMessage({
+        status: "danger",
+        open: true,
+        message: "Internal server error",
+      });
     }
   };
 
@@ -179,15 +245,19 @@ export const ProductManagement = () => {
                   <div className="flex justify-end gap-3 mt-4">
                     <button
                       type="button"
+                      disabled={loading}
                       onClick={handleClearForm}
-                      className="px-4 py-2 rounded border border-gray-300 text-gray-600 bg-gray-100 hover:bg-gray-200 transition"
+                      className={`px-4 py-2 rounded border border-gray-300 text-gray-600 bg-gray-100 hover:bg-gray-200 transition
+    disabled:opacity-50 disabled:cursor-not-allowed`}
                     >
                       Clear
                     </button>
 
                     <button
                       type="submit"
-                      className="px-4 py-2 rounded bg-indigo-600 text-white hover:bg-indigo-700 transition"
+                      disabled={loading}
+                      className={`px-4 py-2 rounded bg-indigo-600 text-white hover:bg-indigo-700 transition
+    disabled:opacity-50 disabled:cursor-not-allowed`}
                     >
                       Create product
                     </button>
@@ -198,6 +268,10 @@ export const ProductManagement = () => {
           </div>
         </section>
       </MarginWrapper>
+      <ToastMessage
+        toastMessage={toastMessage}
+        setToastMessage={setToastMessage}
+      />
     </React.Fragment>
   );
 };

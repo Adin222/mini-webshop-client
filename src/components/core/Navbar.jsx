@@ -1,11 +1,6 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
-import {
-  Bars3Icon,
-  ShoppingBagIcon,
-  BellIcon,
-} from "@heroicons/react/24/outline";
+import { Bars3Icon, ShoppingBagIcon } from "@heroicons/react/24/outline";
 import useUserState from "../../hooks/useUserState";
 import { ConfirmModal } from "./ConfirmModal";
 import { Navigation } from "../../utils/constants";
@@ -52,7 +47,7 @@ export const Navbar = ({ role }) => {
           <MenuMobile navigation={navigation} open={open} setOpen={setOpen} />
         )}
 
-        <header className="fixed flex top-0 bg-white w-full">
+        <header className="fixed flex top-0 bg-white w-full z-10">
           <nav aria-label="Top" className="w-full border-b border-gray-200">
             <div className="mx-auto max-w-8xl px-4 sm:px-6 lg:px-8">
               <div className="flex h-16 items-center">
@@ -123,19 +118,6 @@ export const Navbar = ({ role }) => {
                           0
                         </span>
                         <span className="sr-only">items in cart, view bag</span>
-                      </a>
-                    </div>
-                  )}
-                  {role === "admin" && (
-                    <div className="ml-4 flow-root lg:ml-6">
-                      <a href="#" className="group -m-2 flex items-center p-2">
-                        <BellIcon
-                          aria-hidden="true"
-                          className="size-6 shrink-0 text-gray-400 group-hover:text-gray-500"
-                        />
-                        <span className="ml-2 text-sm font-medium text-gray-700 group-hover:text-gray-800">
-                          0
-                        </span>
                       </a>
                     </div>
                   )}
