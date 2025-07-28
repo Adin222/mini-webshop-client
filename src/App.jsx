@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { Routes, Route } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
+import { ScrollToTop } from "./components/core/ScrollToTop";
 import Cookies from "js-cookie";
 
 //Components
@@ -59,6 +60,7 @@ function App() {
   return (
     <React.Fragment>
       <StateContext value={value}>
+        <ScrollToTop />
         <Routes>
           <Route
             element={

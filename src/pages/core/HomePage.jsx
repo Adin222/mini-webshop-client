@@ -5,6 +5,7 @@ import { useQuery } from "@tanstack/react-query";
 import { ProductCard } from "../../components/core/cards/ProductCard";
 import { FilterModal } from "../../components/core/FilterModal";
 import { SortModal } from "../../components/core/SortModal";
+import { ToastMessage } from "../../components/core/ToastMessage";
 
 //Services
 import { Get } from "../../services/services";
@@ -16,6 +17,11 @@ export const HomePage = () => {
   const [filterModal, setFilterModal] = useState(false);
   const [sortModal, setSortModal] = useState(false);
   const [queryString, setQueryString] = useState("");
+  const [toastMessage, setToastMessage] = useState({
+    status: "",
+    open: false,
+    message: "",
+  });
   const [filterData, setFilterData] = useState({
     name: "",
     min_price: 0,
@@ -96,6 +102,7 @@ export const HomePage = () => {
                   price={product.price}
                   imageUrl={product.image_url}
                   quantity={product.quantity}
+                  setToastMessage={setToastMessage}
                 />
               ))}
             </div>
@@ -117,6 +124,10 @@ export const HomePage = () => {
         handleFilterData={handleFilterData}
         buildQueryString={buildQueryString}
         clearFilter={clearFilter}
+      />
+      <ToastMessage
+        toastMessage={toastMessage}
+        setToastMessage={setToastMessage}
       />
     </React.Fragment>
   );

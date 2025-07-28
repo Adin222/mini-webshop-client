@@ -12,3 +12,6 @@ export const updateUserPath = "/api/user/";
 export const createProductPath = "/api/create/product";
 export const getProductsPath = "/api/products";
 export const getProductById = "/api/product/";
+
+//Cart routes
+export const addCartItemPath = "/api/add-item";

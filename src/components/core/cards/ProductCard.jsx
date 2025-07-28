@@ -1,6 +1,40 @@
 import { Link } from "react-router-dom";
 
-export const ProductCard = ({ id, name, price, imageUrl, quantity }) => {
+//Service
+import { Post } from "../../../services/services";
+
+//Path
+import { addCartItemPath } from "../../../paths/paths";
+
+export const ProductCard = ({
+  id,
+  name,
+  price,
+  imageUrl,
+  quantity,
+  setToastMessage,
+}) => {
+  const handleAddCartItem = async () => {
+    try {
+      const response = await Post(addCartItemPath, { product_id: id, quantity: 1 });
+      if (response.status === 200) {
+        setToastMessage({
+          status: "success",
+          open: true,
+          message: "Item added to cart",
+        });
+      } else {
+        setToastMessage({
+          status: "danger",
+          open: true,
+          message: response.data.detail,
+        });
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <div className="w-full max-w-[250px] bg-white border border-gray-200 rounded-lg shadow-sm dark:bg-gray-800 dark:border-gray-700">
       <Link to={`product/${id}`}>
@@ -11,11 +45,11 @@ export const ProductCard = ({ id, name, price, imageUrl, quantity }) => {
         />
       </Link>
       <div className="px-5 pb-5">
-        <a href="#">
+        <Link to={`product/${id}`}>
           <h6 className="text-md font-semibold tracking-tight text-gray-900 dark:text-white">
             {name}
           </h6>
-        </a>
+        </Link>
         <div className="flex items-center mt-2.5 mb-5">
           <h6 className="text-gray-500 font-semibold">Quantity: {quantity}</h6>
         </div>
@@ -23,8 +57,8 @@ export const ProductCard = ({ id, name, price, imageUrl, quantity }) => {
           <span className="text-md font-bold text-gray-600 dark:text-white">
             BAM: {price}
           </span>
-          <a
-            href="#"
+          <button
+            onClick={handleAddCartItem}
             className="group relative inline-block bg-white hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium rounded-lg p-2 text-center"
           >
             <svg
@@ -45,7 +79,7 @@ export const ProductCard = ({ id, name, price, imageUrl, quantity }) => {
             <span className="absolute bottom-full mb-2 left-1/2 transform -translate-x-1/2 whitespace-nowrap rounded bg-gray-900 px-2 py-1 text-xs text-white opacity-0 transition-opacity group-hover:opacity-100 pointer-events-none">
               Add to cart
             </span>
-          </a>
+          </button>
         </div>
       </div>
     </div>
