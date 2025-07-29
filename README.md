@@ -8,14 +8,13 @@ VITE_AUTH_DOMAIN=
 VITE_PROJECT_ID=
 VITE_STORAGE_BUCKET=
 VITE_MESSAGING_SENDER_ID=
-VITE_APP_ID= VITE_MEASUREMENT_ID=
+VITE_APP_ID= VITE_MEASUREMENT_ID=```
 
 If you plan to use Firebase, you will have to get your Google credentials in the Google Console: https://console.firebase.google.com/
 
 You can log in to the app normally.
 To create an admin user via the API, send a POST request to: https://mini-webshop-server.onrender.com/api/create/admin
 with the JSON body containing:
-```json
 {
   "username": "your_username",
   "email": "your_email",
