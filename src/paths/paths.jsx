@@ -15,3 +15,6 @@ export const getProductById = "/api/product/";
 
 //Cart routes
 export const addCartItemPath = "/api/add-item";
+export const getCartItemsPath = "/api/get-items";
+export const removeCartItemPath = "/api/remove-item/";
+export const actionCartItemPath = "/api/cart/";

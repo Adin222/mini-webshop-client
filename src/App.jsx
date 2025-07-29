@@ -1,13 +1,13 @@
 import React, { useEffect } from "react";
 import { Routes, Route } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
-import { ScrollToTop } from "./components/core/ScrollToTop";
 import Cookies from "js-cookie";
 
 //Components
 import { Loading } from "./components/core/Loading";
 import { AdminRoute } from "./components/admin/AdminRoute";
 import { GuestRoute } from "./components/guest/GuestRoute";
+import { ScrollToTop } from "./components/core/ScrollToTop";
 
 //Layouts
 import { GuestLayout } from "./layouts/GuestLayout";
@@ -20,6 +20,7 @@ import { ErrorNotFound } from "./pages/core/ErrorNotFound";
 import { MyProfile } from "./pages/admin/MyProfile";
 import { ProductManagement } from "./pages/admin/ProductManagement";
 import { ProductDetails } from "./pages/core/ProductDetails";
+import { Cart } from "./pages/guest/Cart";
 
 //Hooks
 import { StateContext } from "./context/StateContext";
@@ -71,6 +72,7 @@ function App() {
           >
             <Route path="/" element={<HomePage />} />
             <Route path="/product/:product_id" element={<ProductDetails />} />
+            <Route path="/cart" element={<Cart />} />
           </Route>
           <Route path="sign-in" element={<SignIn />} />
           <Route

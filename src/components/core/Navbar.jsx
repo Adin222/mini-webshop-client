@@ -109,7 +109,10 @@ export const Navbar = ({ role }) => {
 
                   {role === "guest" && (
                     <div className="ml-4 flow-root lg:ml-6">
-                      <a href="#" className="group -m-2 flex items-center p-2">
+                      <Link
+                        to="/cart"
+                        className="group -m-2 flex items-center p-2"
+                      >
                         <ShoppingBagIcon
                           aria-hidden="true"
                           className="size-6 shrink-0 text-gray-400 group-hover:text-gray-500"
@@ -118,7 +121,7 @@ export const Navbar = ({ role }) => {
                           0
                         </span>
                         <span className="sr-only">items in cart, view bag</span>
-                      </a>
+                      </Link>
                     </div>
                   )}
                 </div>
