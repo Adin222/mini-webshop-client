@@ -22,3 +22,5 @@ export const actionCartItemPath = "/api/cart/";
 //Order routes
 export const createOrderPath = "/api/create-order";
 export const getOrderItemsPath = "/api/orders";
+export const getOrderById = "/api/order/";
+export const updateOrderStatus = "/api/status/order/";

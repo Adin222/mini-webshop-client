@@ -1,18 +1,20 @@
 import React, { useState } from "react";
 import { MarginWrapper } from "../../components/core/MarginWrapper";
 import { useQuery } from "@tanstack/react-query";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import useUserState from "../../hooks/useUserState";
 import { Loading } from "../../components/core/Loading";
 import { ToastMessage } from "../../components/core/ToastMessage";
+import { Link } from "react-router-dom";
 
 //Service
-import { Get, Post } from "../../services/services";
+import { Get, Post, Delete } from "../../services/services";
 
 //Path
 import { getProductById, addCartItemPath } from "../../paths/paths";
 
 export const ProductDetails = () => {
+  const [loading, setLoading] = useState(false);
   const [toastMessage, setToastMessage] = useState({
     status: "",
     open: false,
@@ -23,6 +25,8 @@ export const ProductDetails = () => {
   const { is_auth } = useUserState();
 
   const product_id = params.product_id;
+
+  const navigate = useNavigate();
 
   const handleAddCartItem = async () => {
     try {
@@ -36,6 +40,33 @@ export const ProductDetails = () => {
           open: true,
           message: "Item added to cart",
         });
+      } else {
+        setToastMessage({
+          status: "danger",
+          open: true,
+          message: response.data.detail,
+        });
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const handleDelete = async () => {
+    try {
+      setLoading(true);
+      const response = await Delete(getProductById, product_id);
+
+      if (response.status === 200) {
+        setToastMessage({
+          status: "success",
+          open: true,
+          message: "Product soft deleted",
+        });
+        setTimeout(() => {
+          navigate("/dashboard");
+          setLoading(false);
+        }, [1500]);
       } else {
         setToastMessage({
           status: "danger",
@@ -101,19 +132,26 @@ export const ProductDetails = () => {
                 <div className="mt-6 sm:mt-8 flex flex-col items-center gap-4 sm:flex-row sm:items-center sm:gap-6 w-full">
                   {is_auth && (
                     <>
-                      <a
-                        href="#"
+                      <Link
+                        to={`/dashboard/edit/product/${product_id}`}
                         className="w-full max-w-[150px] flex items-center justify-center py-2.5 px-5 text-sm font-medium text-gray-900 bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-primary-700 focus:outline-none focus:ring-4 focus:ring-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
                       >
                         Edit
-                      </a>
+                      </Link>
 
-                      <a
-                        href="#"
-                        className="w-full max-w-[150px] flex items-center justify-center py-2.5 px-5 text-sm font-medium text-white bg-red-700 rounded-lg border border-gray-200 hover:bg-red-600 focus:outline-none focus:ring-4 focus:ring-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-red-700 dark:hover:text-white"
+                      <button
+                        disabled={loading}
+                        onClick={handleDelete}
+                        className={`w-full max-w-[150px] flex items-center justify-center py-2.5 px-5 text-sm font-medium rounded-lg border 
+       ${
+         loading
+           ? "bg-red-400 border-gray-300 text-gray-300 cursor-not-allowed"
+           : "bg-red-700 border-gray-200 text-white hover:bg-red-600 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-red-700 dark:hover:text-white"
+       }
+        focus:outline-none focus:ring-4 focus:ring-gray-100`}
                       >
                         Delete
-                      </a>
+                      </button>
                     </>
                   )}
 

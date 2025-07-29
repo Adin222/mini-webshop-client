@@ -114,14 +114,26 @@ export const Orders = () => {
                       <dt className="text-base font-medium text-gray-500 dark:text-gray-400">
                         Status:
                       </dt>
-                      <dd className="inline-flex items-center rounded bg-primary-100 text-xs font-medium text-primary-800 dark:bg-primary-900 dark:text-primary-300">
-                        {order_item.status}
+                      <dd
+                        className={`inline-flex items-center rounded px-2 py-1 text-xs font-medium
+      ${
+        order_item.finished
+          ? "bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-300"
+          : order_item.status === "accepted"
+          ? "bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-300"
+          : order_item.status === "rejected"
+          ? "bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-300"
+          : "bg-gray-100 text-gray-800 dark:bg-gray-900 dark:text-gray-300"
+      }
+    `}
+                      >
+                        {order_item.finished ? "finished" : order_item.status}
                       </dd>
                     </dl>
 
                     <div className="w-full grid sm:grid-cols-2 lg:flex lg:w-64 lg:items-center lg:justify-end gap-4">
                       <Link
-                        to={`/order/${order_item.id}`}
+                        to={`/dashboard/order/${order_item.id}`}
                         className="w-full inline-flex justify-center rounded-lg  border border-gray-200 bg-white px-3 py-2 text-sm font-medium text-gray-900 hover:bg-gray-100 hover:text-primary-700 focus:z-10 focus:outline-none focus:ring-4 focus:ring-gray-100 dark:border-gray-600 dark:bg-gray-800 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white dark:focus:ring-gray-700 lg:w-auto"
                       >
                         View details

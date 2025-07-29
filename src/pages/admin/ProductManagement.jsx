@@ -68,9 +68,10 @@ export const ProductManagement = () => {
     const validationErrors = validate(formData, productFields);
     if (!image) validationErrors.image = true;
     setErrors(validationErrors);
-    setLoading(true);
+
     try {
       if (Object.keys(validationErrors).length === 0 && image) {
+        setLoading(true);
         let imageUrl = "";
         const imageRef = ref(storage, `product_picture/${image.file.name}`);
         try {

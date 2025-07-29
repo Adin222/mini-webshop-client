@@ -23,6 +23,8 @@ import { ProductDetails } from "./pages/core/ProductDetails";
 import { Cart } from "./pages/guest/Cart";
 import { Checkout } from "./pages/guest/Checkout";
 import { Orders } from "./pages/admin/Orders";
+import { OrderDetails } from "./pages/admin/OrderDetails";
+import { EditProduct } from "./pages/admin/EditProduct";
 
 //Hooks
 import { StateContext } from "./context/StateContext";
@@ -91,6 +93,8 @@ function App() {
             <Route path="product-management" element={<ProductManagement />} />
             <Route path="product/:product_id" element={<ProductDetails />} />
             <Route path="order-management" element={<Orders />} />
+            <Route path="order/:order_id" element={<OrderDetails />} />
+            <Route path="edit/product/:product_id" element={<EditProduct />} />
           </Route>
           <Route path="*" element={<ErrorNotFound />} />
         </Routes>
