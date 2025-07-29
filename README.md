@@ -1,12 +1,30 @@
-# React + Vite
+# How to run app
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+To successfully run your app locally, you have to clone this repo and run `npm install`. After that, create a `.env` file with the following variables:
 
-Currently, two official plugins are available:
+VITE_API_BASE_URL=   # your backend localhost URL (e.g., http://localhost:5000)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+VITE_API_KEY=
+VITE_AUTH_DOMAIN=
+VITE_PROJECT_ID=
+VITE_STORAGE_BUCKET=
+VITE_MESSAGING_SENDER_ID=
+VITE_APP_ID=
+VITE_MEASUREMENT_ID=
 
-## Expanding the ESLint configuration
+If you plan to use Firebase, you will have to get your Google credentials in the Google Console: https://console.firebase.google.com/
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+You can log in to the app normally.
+To create an admin user via the API, send a POST request to: https://mini-webshop-server.onrender.com/api/create/admin
+with the JSON body containing:
+{
+  "username": "your_username",
+  "email": "your_email",
+  "password": "your_password"
+}
+Note: It is recommended to use the default admin account for testing order confirmation emails, as it is the only guaranteed way those emails will work.
+
+This system has admin and guest users, every registered user is considered an admin.
+
+My client URL can be found here: https://vocal-blini-e77de3.netlify.app/  
+My API URL can be found here: https://mini-webshop-server.onrender.com
