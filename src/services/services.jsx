@@ -81,7 +81,10 @@ export const Delete = async (path, id) => {
 
 export const Get = async (path) => {
   try {
-    const response = await API.get(path, { withCredentials: true });
+    const response = await API.get(path, {
+      withCredentials: true,
+      headers: { "x-session-id": getToken("session_id") },
+    });
     return response;
   } catch (error) {
     return error.response;
