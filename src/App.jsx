@@ -21,6 +21,7 @@ import { MyProfile } from "./pages/admin/MyProfile";
 import { ProductManagement } from "./pages/admin/ProductManagement";
 import { ProductDetails } from "./pages/core/ProductDetails";
 import { Cart } from "./pages/guest/Cart";
+import { Checkout } from "./pages/guest/Checkout";
 
 //Hooks
 import { StateContext } from "./context/StateContext";
@@ -73,6 +74,7 @@ function App() {
             <Route path="/" element={<HomePage />} />
             <Route path="/product/:product_id" element={<ProductDetails />} />
             <Route path="/cart" element={<Cart />} />
+            <Route path="/checkout" element={<Checkout />} />
           </Route>
           <Route path="sign-in" element={<SignIn />} />
           <Route

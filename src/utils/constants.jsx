@@ -72,7 +72,9 @@ export const Navigation = (is_auth) => {
         ],
       },
     ],
-    pages: [],
+    pages: [
+      { name: "orders", href: "/orders" },
+    ],
   };
 };
 

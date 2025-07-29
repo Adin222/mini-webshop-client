@@ -85,7 +85,6 @@ export const Navbar = ({ role }) => {
                     <Bars3Icon aria-hidden="true" className="size-6" />
                   </button>
                 )}
-                {role === "guest" && <Menu navigation={navigation} />}
                 {role === "admin" && (
                   <h4 className="ml-6 text-2xl font-semibold text-gray-800">
                     Admin dashboard
