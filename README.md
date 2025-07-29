@@ -1,6 +1,6 @@
 # Important information
 
-If the app doesn't start immediately, it's because the server is hosted on Render's free tier — it may take 15 to 50 seconds to wake up from sleep. Wait or reload the window
+If the app doesn't start immediately, it's because the server is hosted on Render's free tier it may take 15 to 50 seconds to wake up from sleep. Wait or reload the window
 
 # How to run app
 
