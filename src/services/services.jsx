@@ -40,6 +40,7 @@ export const Post = async (path, data) => {
       withCredentials: true,
       headers: {
         "X-CSRF-Token": getToken("csrftoken"),
+        "x-session-id": getToken("session_id"),
       },
     });
     return response;
@@ -54,6 +55,7 @@ export const Patch = async (path, data, id) => {
       withCredentials: true,
       headers: {
         "X-CSRF-Token": getToken("csrftoken"),
+        "x-session-id": getToken("session_id"),
       },
     });
     return response;
@@ -68,6 +70,7 @@ export const Delete = async (path, id) => {
       withCredentials: true,
       headers: {
         "X-CSRF-Token": getToken("csrftoken"),
+        "x-session-id": getToken("session_id"),
       },
     });
     return response;
