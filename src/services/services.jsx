@@ -1,5 +1,6 @@
 import axios from "axios";
 import { refreshPath } from "../paths/paths";
+import { getToken } from "../utils/utils";
 
 const apiBase = import.meta.env.VITE_API_BASE_URL;
 
@@ -37,6 +38,9 @@ export const Post = async (path, data) => {
   try {
     const response = await API.post(path, data, {
       withCredentials: true,
+      headers: {
+        "X-CSRF-Token": getToken("csrftoken"),
+      },
     });
     return response;
   } catch (error) {
@@ -48,6 +52,9 @@ export const Patch = async (path, data, id) => {
   try {
     const response = await API.patch(`${path}${id}`, data, {
       withCredentials: true,
+      headers: {
+        "X-CSRF-Token": getToken("csrftoken"),
+      },
     });
     return response;
   } catch (error) {
@@ -59,6 +66,9 @@ export const Delete = async (path, id) => {
   try {
     const response = await API.delete(`${path}${id}`, {
       withCredentials: true,
+      headers: {
+        "X-CSRF-Token": getToken("csrftoken"),
+      },
     });
     return response;
   } catch (error) {
