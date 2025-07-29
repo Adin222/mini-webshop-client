@@ -18,11 +18,13 @@ If you plan to use Firebase, you will have to get your Google credentials in the
 You can log in to the app normally.
 To create an admin user via the API, send a POST request to: https://mini-webshop-server.onrender.com/api/create/admin
 with the JSON body containing:
+```json
 {
   "username": "your_username",
   "email": "your_email",
   "password": "your_password"
 }
+```
 Note: It is recommended to use the default admin account for testing order confirmation emails, as it is the only guaranteed way those emails will work.
 
 This system has admin and guest users, every registered user is considered an admin.
