@@ -8,7 +8,7 @@ VITE_AUTH_DOMAIN=
 VITE_PROJECT_ID=
 VITE_STORAGE_BUCKET=
 VITE_MESSAGING_SENDER_ID=
-VITE_APP_ID= VITE_MEASUREMENT_ID=```
+VITE_APP_ID= VITE_MEASUREMENT_ID=
 
 If you plan to use Firebase, you will have to get your Google credentials in the Google Console: https://console.firebase.google.com/
 
