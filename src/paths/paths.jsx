@@ -18,3 +18,7 @@ export const addCartItemPath = "/api/add-item";
 export const getCartItemsPath = "/api/get-items";
 export const removeCartItemPath = "/api/remove-item/";
 export const actionCartItemPath = "/api/cart/";
+
+//Order routes
+export const createOrderPath = "/api/create-order";
+export const getOrderItemsPath = "/api/orders";

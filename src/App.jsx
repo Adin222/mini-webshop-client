@@ -22,6 +22,7 @@ import { ProductManagement } from "./pages/admin/ProductManagement";
 import { ProductDetails } from "./pages/core/ProductDetails";
 import { Cart } from "./pages/guest/Cart";
 import { Checkout } from "./pages/guest/Checkout";
+import { Orders } from "./pages/admin/Orders";
 
 //Hooks
 import { StateContext } from "./context/StateContext";
@@ -89,6 +90,7 @@ function App() {
             <Route path="my-profile" element={<MyProfile />} />
             <Route path="product-management" element={<ProductManagement />} />
             <Route path="product/:product_id" element={<ProductDetails />} />
+            <Route path="order-management" element={<Orders />} />
           </Route>
           <Route path="*" element={<ErrorNotFound />} />
         </Routes>

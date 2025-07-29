@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { CartItem } from "../../components/core/cards/CartItem";
 import { ToastMessage } from "../../components/core/ToastMessage";
+import { Link } from "react-router-dom";
 
 //Service
 import { Get, Delete, Patch } from "../../services/services";
@@ -139,12 +140,12 @@ export const Cart = () => {
                     </dl>
                   </div>
 
-                  <a
-                    href="#"
+                  <Link
+                    to="/checkout"
                     className="flex w-full items-center justify-center rounded-xl bg-indigo-700 px-6 py-3 text-sm font-medium text-white hover:bg-indigo-800 focus:outline-none focus:ring-4 focus:ring-indigo-300 dark:bg-indigo-600 dark:hover:bg-indigo-700 dark:focus:ring-indigo-800"
                   >
                     Proceed to Checkout
-                  </a>
+                  </Link>
                 </div>
               </div>
             </div>

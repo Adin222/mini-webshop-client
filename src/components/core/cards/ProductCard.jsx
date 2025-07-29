@@ -55,7 +55,7 @@ export const ProductCard = ({
         </div>
         <div className="flex items-center justify-between">
           <span className="text-md font-bold text-gray-600 dark:text-white">
-            BAM: {price}
+            BAM: {price.toFixed(2)}
           </span>
           <button
             onClick={handleAddCartItem}

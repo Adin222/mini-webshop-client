@@ -87,7 +87,7 @@ export const CartItem = ({
             </div>
             <div className="text-end md:order-4 md:w-32">
               <p className="text-base font-bold text-gray-900 dark:text-white">
-                {price} KM
+                {price.toFixed(2)} KM
               </p>
             </div>
           </div>

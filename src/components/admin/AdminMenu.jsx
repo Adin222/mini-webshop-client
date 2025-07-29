@@ -64,7 +64,7 @@ export const AdminMenu = ({ setOpenModal, isOpen, setIsOpen }) => {
             </li>
             <li>
               <button
-                onClick={() => handleNavigate("orders")}
+                onClick={() => handleNavigate("order-management")}
                 className="flex ml-2 items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group w-full text-left"
               >
                 <QueueListIcon className="w-6 h-6" />
