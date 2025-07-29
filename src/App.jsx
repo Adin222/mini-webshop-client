@@ -48,7 +48,12 @@ function App() {
     const existingSessionId = Cookies.get("session_id");
     if (!existingSessionId) {
       const session_id = Math.random().toString(36).substring(2);
-      Cookies.set("session_id", session_id, { expires: 30, path: "/" });
+      Cookies.set("session_id", session_id, {
+        expires: 30,
+        path: "/",
+        sameSite: "none",
+        secure: true,
+      });
     }
   }, []);
 
